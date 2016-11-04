@@ -1,0 +1,21 @@
+body {
+  background-color: $body-bg;
+}
+
+main {
+}
+
+.flex {
+  display: flex;
+}
+
+.alert {
+  border-radius: 0;
+}
+
+.flash_message.alert {
+  width: 100vw;
+  margin-bottom: 0;
+  opacity: .95;
+  min-height: 58px;
+}

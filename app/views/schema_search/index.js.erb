@@ -1,0 +1,17 @@
+// http://guides.rubyonrails.org/working_with_javascript_in_rails.html#form-for
+// http://guides.rubyonrails.org/layouts_and_rendering.html#rendering-collections
+
+// Update the search result.
+$('#search_result').html(
+  '<%= j(render "search_result") %>'
+);
+
+// Update the search meta.
+$('#search_meta').html(
+  '<%= j(render "search_meta") %>'
+);
+
+// Update the webpage title.
+$('title').html(
+  '<%= j(weather_readings_title) %>'
+);

@@ -1,0 +1,26 @@
+= set_title("Weather search")
+
+.weather_readings_index
+  .weather_readings_index__header
+    #search_navbar.search_navbar
+      = render "search_navbar"
+  .weather_readings_index__content
+    #search_result.search_result
+      = render "search_result"
+
+javascript:
+  // // Toggle map.
+  // $('#map_toggle').on('click', function() {
+  //   $('#map').show();
+  //   $('#search_result').hide();
+  // })
+
+  // Toggle search_result.
+  $('#search_result_toggle').on('click', function() {
+    $('#search_result').show();
+  })
+
+  // Close modal when clicking on submit.
+  $('#advanced_search_submit').on('click', function() {
+    $('#advanced_search_close').trigger("click");
+  })

@@ -1,0 +1,37 @@
+= form_tag weather_readings_path, method: :get, remote:true do |f|
+
+  .input-group
+    input.form-control [
+      type="search"
+      id="q"
+      name="q"
+      placeholder="Search keyword..."
+    ]
+
+    .input-group-btn
+      button.btn.btn-outline-success [type="submit"]
+        = fa_icon("search")
+
+    .input-group-btn
+      /! Button trigger modal
+      button.btn.btn-outline-secondary#advanced_search_fields_toggle
+        = fa_icon("sliders")
+
+  #advanced_search_fields
+    = render "advanced_search_fields"
+
+javascript:
+  // Toggle advanced_search_fields.
+  $('#advanced_search_fields_toggle').on('click', function() {
+    $('#advanced_search_fields').toggle();
+  });
+  // Close advanced_search_fields on submit.
+  $('button[type="submit"]').on('click', function() {
+    $('#advanced_search_fields').hide();
+  });
+
+scss:
+  // Hidden by default
+  #advanced_search_fields {
+    display: none;
+  }

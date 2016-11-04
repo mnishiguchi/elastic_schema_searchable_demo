@@ -1,0 +1,26 @@
+- if @weather_readings.empty?
+  / http://v4-alpha.getbootstrap.com/components/card/
+  .card
+    .card-block
+      p.card-text Nothing was found...
+- else
+  = paginate @weather_readings
+  table.table-bordered[style="width:100%;"]
+    thead
+      tr
+        th reading date
+        th reading type
+        th reading value
+        th source
+        th station name
+        th station id
+
+    hbody
+      - @weather_readings.each do |reading|
+        tr
+          td= reading.reading_date
+          td= reading.reading_type
+          td= reading.reading_value
+          td= reading.source_flag
+          td= reading.weather_station.name
+          td= reading.station

@@ -1,0 +1,9 @@
+.navbar-text.search_meta
+  span = pluralize(@weather_readings.try!(:total_count), "result")
+  span = active_filters_text(@active_filters)
+
+css:
+  .search_meta > span {
+    padding: 0 3px;
+    font-size: .8rem;
+  }

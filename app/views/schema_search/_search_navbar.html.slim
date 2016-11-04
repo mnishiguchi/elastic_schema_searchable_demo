@@ -1,0 +1,13 @@
+nav.navbar.navbar-light
+  .row
+    .col-sm-7
+      #search_form
+        = render "search_form"
+      #search_meta
+        = render "search_meta"
+    .col-sm-5
+      .btn-group
+        button.btn.btn-outline-secondary#map_toggle [type="button"]
+          = fa_icon("map-o")
+        button.btn.btn-outline-secondary#search_result_toggle [type="button"]
+          = fa_icon("th")
