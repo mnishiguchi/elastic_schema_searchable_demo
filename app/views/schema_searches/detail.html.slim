@@ -1,0 +1,21 @@
+= set_title(@object.humanized_class_name_with_id)
+
+= link_to "Back to search", schema_search_path, class: "btn btn-secondary"
+
+.card.card-outline-primary
+  .card-block
+    .card-title
+      h4 = @object.humanized_class_name_with_id
+    table.table.table-bordered
+      tbody
+        - @object.attributes.each do |k, v|
+          - if k =~ /_id\z/
+            tr 
+              td = k 
+              td 
+                = link_to v, schema_search_detail_path(type: k.sub("_id", ""), id: v)
+          - else
+            tr 
+              td = k
+              td = v
+          

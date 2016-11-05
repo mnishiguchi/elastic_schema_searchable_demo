@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
-  resources :schema_searches, only: [:index]
-  root "schema_searches#index"
+  get "schema_search"        => "schema_searches#search"
+  get "schema_search/detail" => "schema_searches#detail"
+
+  root "schema_searches#search"
 end

@@ -1,4 +1,4 @@
-= form_tag schema_searches_path, method: :get, remote:true do |f|
+= form_tag(schema_search_path, method: :get, remote:true) do |f|
 
   .input-group
     input.form-control [
@@ -9,7 +9,7 @@
     ]
 
     .input-group-btn
-      button.btn.btn-outline-success [type="submit"]
+      button.btn.btn-primary [type="submit"]
         = fa_icon("search")
 
     .input-group-btn
@@ -20,6 +20,12 @@
   #advanced_search_fields
     = render "advanced_search_fields"
 
+scss:
+  // Hidden by default
+  #advanced_search_fields {
+    //display: none;
+  }
+
 javascript:
   // Toggle advanced_search_fields.
   $('#advanced_search_fields_toggle').on('click', function() {
@@ -29,9 +35,3 @@ javascript:
   // $('button[type="submit"]').on('click', function() {
   //   $('#advanced_search_fields').hide();
   // });
-
-scss:
-  // Hidden by default
-  #advanced_search_fields {
-    //display: none;
-  }

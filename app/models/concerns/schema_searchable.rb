@@ -32,12 +32,20 @@ module SchemaSearchable
         # Used for filtering by class_name
         class_name:         self.class.underscored_class_name,
         # Used for sorting by id
-        class_name_with_id: [
-                              self.class.underscored_class_name,
-                              self.id.to_s.rjust(5, '0')
-                            ].join("-"),
+        class_name_with_id: self.underscored_class_name_with_id
       }
       attributes.merge(merge)
+    end
+
+    def underscored_class_name_with_id
+      [
+        self.class.underscored_class_name,
+        self.id.to_s.rjust(5, '0')
+      ].join("-")
+    end
+
+    def humanized_class_name_with_id
+      "#{self.class.name.underscore.humanize} (ID: #{self.id})"
     end
   end
 end

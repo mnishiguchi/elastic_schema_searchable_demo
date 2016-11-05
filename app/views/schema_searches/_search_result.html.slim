@@ -5,15 +5,17 @@
       p.card-text Nothing was found...
 - else
   = paginate @results
-  table.table-bordered[style="width:100%;"]
-    thead
-      tr
-        th inspect
-        th model_name
-        th id
-    tbody
-      - @results.each do |result|
-        tr
-          td= result.inspect
-          td= result.model_name
-          td= result.id
+  .card-columns
+    - @results.each do |result|
+      .card.card-outline-primary
+        .card-header
+          - text = result.humanized_class_name_with_id
+          - type = result.class.name.underscore
+          - id   = result.id
+          = link_to text, schema_search_detail_path(type: type, id: id)
+        .card-block
+          - slice = ["id", "name", "created_at", "updated_at"]
+          - result.attributes.slice(*slice).each do |k, v|
+            p.card-text 
+              small> = "#{k} :"
+              small.text-muted.pull-right = v

@@ -1,6 +1,6 @@
 class SchemaSearch
 
-  # Register all the class_names here.
+  # Register all the class_names that we want to be searchable.
   @@searchable_classes ||= [
     Admin,
     User,
@@ -9,43 +9,39 @@ class SchemaSearch
   ]
   cattr_accessor :searchable_classes
 
-  # Returns an array of underscored registered class names
+  # Returns an array of underscored version of the registered class names.
   def self.searchable_class_names
     @@searchable_class_names ||= @@searchable_classes.map(&:to_s).map(&:underscore)
   end
 
-  # Returns an Searchkick::Results object which responds like an array.
   def initialize(search_params)
     @search_params = search_params
     @query         = search_params[:q].presence || "*"
   end
 
-  # A wrapper of Searchkick's search method. We configure common behavior of
-  # all the searches here.
-  # arg0: a query string
-  # arg1: an @search_params hash
+  # A wrapper of Searchkick's search method.
   def search
     # Invoke Searchkick's search method with our search constraints.
-    # Searchkick.search "milk", index_name: [Product, Category]
     @results = Searchkick.search(@query, search_constraints)
 
     ap search_constraints
 
     # Wrap the information as a hash and pass it to PropertiesController.
     {
-      results:        @results,
+      # An Searchkick::Results object which responds like an array.
+      results: @results,
     }
   end
 
   private def search_constraints
     {
+      index_name:   @@searchable_classes,
       match:        :word_middle,
       misspellings: { below: 5 },
-      index_name:   @@searchable_classes,
       where:        where,
       order:        order,
       page:         @search_params[:page],
-      per_page:     20,
+      per_page:     30,
       # limit:        30,
     }
   end
@@ -62,6 +58,8 @@ class SchemaSearch
     where
   end
 
+  # Sets the sorting-related constraints based on "sort_attribute" and
+  # "sort_order" params.
   private def order
     return {} unless @search_params[:sort_attribute].present?
 
