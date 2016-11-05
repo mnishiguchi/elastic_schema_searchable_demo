@@ -1,14 +1,18 @@
 class SchemaSearch
 
   # Register all the class_names here.
-  @@searchable_classes = [
+  @@searchable_classes ||= [
     Admin,
     User,
     AccountExecutive,
     Client
   ]
-  @@searchable_class_names ||= @@searchable_classes.map(&:to_s).map(&:underscore)
-  cattr_accessor :searchable_class_names
+  cattr_accessor :searchable_classes
+
+  # Returns an array of underscored registered class names
+  def self.searchable_class_names
+    @@searchable_class_names ||= @@searchable_classes.map(&:to_s).map(&:underscore)
+  end
 
   # Returns an Searchkick::Results object which responds like an array.
   def initialize(search_params)
@@ -55,13 +59,16 @@ class SchemaSearch
       where[:class_name] = @search_params[:class_name]
     end
 
-    return where
+    where
   end
 
   private def order
     return {} unless @search_params[:sort_attribute].present?
 
     order = @search_params[:sort_order].presence || :asc
-    { @search_params[:sort_attribute] => order }
+
+    {
+      @search_params[:sort_attribute] => order
+    }
   end
 end
