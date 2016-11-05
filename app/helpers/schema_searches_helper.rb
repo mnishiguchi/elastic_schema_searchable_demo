@@ -1,29 +1,38 @@
 module SchemaSearchesHelper
 
-  def schema_searches_title
-    "#{pluralize(@results.count, "record")} found"
-  end
-
 
   # ---
   # Search meta
   # ---
 
 
-  def active_filters_text(active_filters)
-
-    # TODO
-
+  def total_count_text(results)
+    "#{pluralize(results.try!(:total_count), "record")} found"
   end
 
-  def sort_text(active_filters)
 
-    # TODO
-
+  def q_text(filter_hash)
+    if filter_hash["q"]&.present?
+      filter_hash["q"]
+    end
   end
 
-  def class_names_text(active_filters)
-    # "Reading type: #{active_filters[:searchable_class_names]}" if active_filters[:searchable_class_names].present?
+  def class_name_text(filter_hash)
+    if filter_hash["class_name"]&.present?
+      filter_hash["class_name"]
+    end
+  end
+
+  def sort_attribute_text(filter_hash)
+    if filter_hash["sort_attribute"]&.present?
+      filter_hash["sort_attribute"]
+    end
+  end
+
+  def sort_order_text(filter_hash)
+    if filter_hash["sort_order"]&.present?
+      filter_hash["sort_order"]
+    end
   end
 
 
@@ -31,12 +40,6 @@ module SchemaSearchesHelper
   # Filtering
   # ---
 
-
-  def active_filters(params)
-    # @search_params.slice(
-    #   :class_name
-    # ).to_h.reject { |_, v| v.blank? }
-  end
 
   def class_name_select_tag(params)
     options = SchemaSearch.searchable_class_names

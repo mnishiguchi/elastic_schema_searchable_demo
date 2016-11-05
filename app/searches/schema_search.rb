@@ -24,7 +24,8 @@ class SchemaSearch
     # Invoke Searchkick's search method with our search constraints.
     @results = Searchkick.search(@query, search_constraints)
 
-    ap search_constraints
+    # For debuging.
+    ap search_constraints if ENV["RAILS_ENV"] == "development"
 
     # Wrap the information as a hash and pass it to PropertiesController.
     {
