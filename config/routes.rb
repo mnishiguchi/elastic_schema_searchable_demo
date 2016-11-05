@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :weather_readings
-  resources :weather_stations
-  root "weather_readings#index"
+  resources :schema_searches, only: [:index]
+  root "schema_searches#index"
 end

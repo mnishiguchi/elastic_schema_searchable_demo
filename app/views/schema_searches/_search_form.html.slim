@@ -1,4 +1,4 @@
-= form_tag weather_readings_path, method: :get, remote:true do |f|
+= form_tag schema_searches_path, method: :get, remote:true do |f|
 
   .input-group
     input.form-control [
@@ -26,12 +26,12 @@ javascript:
     $('#advanced_search_fields').toggle();
   });
   // Close advanced_search_fields on submit.
-  $('button[type="submit"]').on('click', function() {
-    $('#advanced_search_fields').hide();
-  });
+  // $('button[type="submit"]').on('click', function() {
+  //   $('#advanced_search_fields').hide();
+  // });
 
 scss:
   // Hidden by default
   #advanced_search_fields {
-    display: none;
+    //display: none;
   }

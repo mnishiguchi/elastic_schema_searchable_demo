@@ -1,0 +1,14 @@
+.card [style="min-width:60vw;"]
+  ul.list-group
+    li.list-group-item
+      .row
+        .col-sm-6
+          label class_name:
+          = class_name_select_tag(params)
+    li.list-group-item
+      label Sorting:
+      .row
+        .col-sm-6
+          = sort_attribute_select_tag(params)
+        .col-sm-6
+          = sort_order_select_tag(params)

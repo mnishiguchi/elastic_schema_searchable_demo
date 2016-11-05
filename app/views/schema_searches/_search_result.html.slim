@@ -1,0 +1,19 @@
+- if @results.empty?
+  / http://v4-alpha.getbootstrap.com/components/card/
+  .card
+    .card-block
+      p.card-text Nothing was found...
+- else
+  = paginate @results
+  table.table-bordered[style="width:100%;"]
+    thead
+      tr
+        th inspect
+        th model_name
+        th id
+    tbody
+      - @results.each do |result|
+        tr
+          td= result.inspect
+          td= result.model_name
+          td= result.id

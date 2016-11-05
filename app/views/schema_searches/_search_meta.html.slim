@@ -1,5 +1,5 @@
 .navbar-text.search_meta
-  span = pluralize(@weather_readings.try!(:total_count), "result")
+  span = pluralize(@results.try!(:total_count), "record")
   span = active_filters_text(@active_filters)
 
 css:
