@@ -4,9 +4,10 @@ css:
   }
 
 .navbar-text.search_meta
-  .h5 
-    span = total_count_text(@results)
-    span.tag.tag-pill.tag-primary 
+  .h5
+    span [style="display:block;"]
+      = total_count_text(@results)
+    span.tag.tag-pill.tag-primary
       = q_text(@active_filters)
-    span.tag.tag-pill.tag-primary 
+    span.tag.tag-pill.tag-primary
       = class_name_text(@active_filters)
