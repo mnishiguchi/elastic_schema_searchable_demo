@@ -1,5 +1,6 @@
 body {
   background-color: $body-bg;
+  color: $body-color;
 }
 
 main {
@@ -18,4 +19,28 @@ main {
   margin-bottom: 0;
   opacity: .95;
   min-height: 58px;
+}
+
+.schema_search {
+  border: 1px solid $gray-2;
+  border-top: none;
+  width: 100%;
+  padding: 1rem;
+}
+
+footer {
+  font-family: $heading-font-family;
+  vertical-align: middle;
+  padding: 4rem 0;
+  color: white;
+  background: $footer-color;
+  a {
+    color:inherit;
+    margin: 0 .5rem;
+    color: $link-color;
+  }
+  a:hover {
+    text-decoration: none;
+    color: $link-hover-color;
+  }
 }

@@ -38,21 +38,18 @@ $soundcloud: #ff3a00;
 
 // Configure colors for the app.
 // $root-font-family: "PT Serif", 'Times New Roman', serif;
-$root-font-family: 'Lato', "Helvetica Neue", Arial, sans-serif;
-$root-font-size: 18px;
-$root-line-height: 1.6;
+// $root-font-family: 'Lato', "Helvetica Neue", Arial, sans-serif;
+// $root-font-size: 18px;
+// $root-line-height: 1.6;
 
-$header-color: rgb(6,29,47);
-$footer-color: darken(rgb(6,29,47), 5%);
+$header-color: #014c8c;
+$footer-color: #3b5998;
 
-$body-color: $gray-5;
+$body-color: rgb(6,29,47);
 $body-bg: white;
 
-$link-color: $blue;
-$link-hover-color: #6a9fb5;
+$link-color: $gray-2;
+$link-hover-color: $gray-1;
 
 $heading-font-family: 'Lato', "Helvetica Neue", Arial, sans-serif;
 $heading-font-color: #425469;
-
-$large-breakpoint: 38em;
-$large-font-size: 20px;

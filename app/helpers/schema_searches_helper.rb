@@ -1,6 +1,5 @@
 module SchemaSearchesHelper
-
-
+  
   # ---
   # Search meta
   # ---
@@ -18,8 +17,8 @@ module SchemaSearchesHelper
   end
 
   def class_name_text(filter_hash)
-    if filter_hash["class_name"]&.present?
-      filter_hash["class_name"]
+    if filter_hash["type"]&.present?
+      filter_hash["type"]
     end
   end
 
@@ -44,8 +43,8 @@ module SchemaSearchesHelper
   def class_name_select_tag(params)
     options = SchemaSearch.searchable_class_names
     select_tag(
-      "class_name",
-      options_for_select(options, params[:class_name]),
+      "type",
+      options_for_select(options, params[:type]),
       include_blank: true
     )
   end

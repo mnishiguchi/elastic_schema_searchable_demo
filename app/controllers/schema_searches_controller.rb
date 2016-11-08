@@ -13,7 +13,7 @@ class SchemaSearchesController < ApplicationController
   private def active_filters
     slice = [
       "q",
-      "class_name",
+      "type",
       "sort_attribute",
       "sort_order",
     ]

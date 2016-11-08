@@ -9,36 +9,30 @@ Ability to search through the whole application for registered models.
 ## Get started
 
 ```
-# Set up database.
 bin/setup
 ```
 
 ```
-# Seed example data to database.
+rake db:migrate
+```
+
+```
 rake db:seed
 ```
 
 ```
-# Broweserify.
 npm install
 ```
 
 ```
-# Start elasticsearch server.
 elasticsearch
 ```
 
 ```
-# Reindex elasticsearch.
-rake searchkick:reindex:all
-```
-
-```
-# Start rails server.
 rails s
 ```
 
-Visit localhose:3000
+Visit localhost:3000
 
 
 ## Models

@@ -1,17 +1,19 @@
 class SchemaSearch
 
-  # Register all the class_names that we want to be searchable.
-  @@searchable_classes ||= [
-    Admin,
-    User,
-    AccountExecutive,
-    Client
-  ]
-  cattr_accessor :searchable_classes
+  # Returns a list of all the classes that are registered as searchable.
+  def self.searchable_classes
+    @@searchable_classes ||= begin
+      Rails.application.eager_load! if ENV["RAILS_ENV"] == "development"
+
+      ApplicationRecord.descendants.select do |klass|
+        klass.respond_to?(:set_searchable)
+      end
+    end
+  end
 
   # Returns an array of underscored version of the registered class names.
   def self.searchable_class_names
-    @@searchable_class_names ||= @@searchable_classes.map(&:to_s).map(&:underscore)
+    @@searchable_class_names ||= self.searchable_classes.map(&:to_s).map(&:underscore)
   end
 
   def initialize(search_params)
@@ -36,7 +38,7 @@ class SchemaSearch
 
   private def search_constraints
     {
-      index_name:   @@searchable_classes,
+      index_name:   SchemaSearch.searchable_classes,
       match:        :word_middle,
       misspellings: { below: 5 },
       where:        where,
@@ -52,8 +54,8 @@ class SchemaSearch
     where = {}
 
     # class_name
-    if @search_params[:class_name].present?
-      where[:class_name] = @search_params[:class_name]
+    if @search_params[:type].present?
+      where[:class_name] = @search_params[:type]
     end
 
     where
