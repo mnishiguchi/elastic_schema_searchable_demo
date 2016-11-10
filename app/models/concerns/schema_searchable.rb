@@ -1,5 +1,3 @@
-require 'active_support/concern'
-
 # https://github.com/ankane/searchkick#multiple-indices
 # USAGE:
 #   class User < ApplicationRecord
@@ -13,7 +11,7 @@ module SchemaSearchable
 
     # We add this class methods at the top of the class to bootstrap our search.
     def set_searchable
-      searchkick index_name: self.underscored_class_name
+      searchkick
     end
 
     # Returns a string of underscored class_name.
@@ -25,13 +23,12 @@ module SchemaSearchable
   included do
 
     # Allows us to control what data is indexed for searching.
-    # https://github.com/ankane/searchkick#indexing
+    # By default, all the attributes and class_name_with_id are set, but
+    # we can override this method to meet individual models' requirements.
     # NOTE: We need to reindex after making changes to the search attributes.
     def search_data
       merge = {
-        # Used for filtering by class_name
-        class_name:         self.class.underscored_class_name,
-        # Used for sorting by id
+        # For filtering by class_name and for sorting by id
         class_name_with_id: self.underscored_class_name_with_id
       }
       attributes.merge(merge)
